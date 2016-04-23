@@ -27,14 +27,13 @@ app.intent('airportinfo',
   },
   function(req, res) {
     var airportCode = req.slot('AIRPORTCODE');
-    var reprompt = 'Tell me an airport code to get delay status';
+    var reprompt = 'Tell me an airport code to get delay information.';
     if(_.isEmpty(airportCode)) {
       var prompt  = 'I didn\'t hear an airport code. Tell me an aiport code.';
       res.say(prompt).reprompt(reprompt).shouldEndSession(false);
       return true;
     } else {
       var faaHelper = new FAADataHelper();
-
       faaHelper.requestAirportStatus(airportCode).then(function(airportStatus) {
         console.log(airportStatus);
         res.say(faaHelper.formatAirportStatus(airportStatus)).send();
@@ -47,5 +46,5 @@ app.intent('airportinfo',
     }
   }
 );
-
+console.log(app.utterances().replace(/\{\-\|/g, '{'));
 module.exports = app;

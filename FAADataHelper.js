@@ -44,7 +44,7 @@ FAADataHelper.prototype.formatAirportStatus = function(airportStatus) {
 	} else {
 		// no delay
 		return _.template('There is currently no delay at ${airport}. ${weather}')({
-			airport: airtportStatus.name,
+			airport: airportStatus.name,
 			weather: weather
 		});
 	}
